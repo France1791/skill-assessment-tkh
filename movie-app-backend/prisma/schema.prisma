@@ -11,15 +11,17 @@ datasource db {
 }
 
 model Movies {
-  id Int @id @default(autoincrement())
-  title String
+  id           Int      @id @default(autoincrement())
+  title        String
   directorName String
-  company String
-  actors Actors[] 
+  company      String
+  actors       Actors[]
 }
 
 model Actors {
-  id Int @id @default(autoincrement())
+  id   Int    @id @default(autoincrement())
   name String
   //Missing one to many relationship here
+  Movies   Movies? @relation(fields: [moviesId], references: [id])
+  moviesId Int?
 }
